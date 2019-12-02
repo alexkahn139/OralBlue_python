@@ -11,7 +11,7 @@ sensor.stdout.on('data', function(data) {
     temperatures.push(data.toString());
 
     // Log to debug
-   console.log(temperatures);
+   console.log(JSON.parse(temperatures[0]));
 });
 console.log('ok');
 

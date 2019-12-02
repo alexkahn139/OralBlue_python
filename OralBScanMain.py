@@ -1,6 +1,6 @@
 from typing import Optional
 from bluepy.btle import Scanner, DefaultDelegate, ScanEntry
-
+import json
 from OralBlue.OralBAdvertise import OralBAdvertise
 
 # create a delegate class to receive the BLE broadcast packets
@@ -15,8 +15,15 @@ class OralBScanDelegate(DefaultDelegate):
               "Address: {}\n" \
               "Type: {}\n" \
               "FwVersion: {}\n".format(device.addr, str(adv.typeId), adv.fwVersion)
-        print(printMe)
-        print(str(adv))
+        # print(printMe)
+        # print(adv)
+        jsonobj = {
+            "state": adv.state,
+            "brushTime": adv.brushingTimeS,
+            "sector": adv.sector
+        }
+        jsonobj = json.dumps(jsonobj)
+        print(jsonobj)
 
     # when this python script discovers a BLE broadcast packet, print a message with the device's MAC address
     def handleDiscovery(self, dev: ScanEntry, isNewDev: bool, isNewData):

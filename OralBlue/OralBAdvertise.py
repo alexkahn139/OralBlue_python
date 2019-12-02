@@ -1,3 +1,5 @@
+import json 
+
 from typing import Optional
 
 from bluepy.btle import ScanEntry
@@ -60,6 +62,8 @@ class OralBAdvertise(object):
     def __str__(self):
         return str(self.__dict__)
 
+    def __json___(self):
+        return json(self.__dict__)
     @property
     def isValid(self)->bool:
         return self._isValid
@@ -122,3 +126,10 @@ class OralBAdvertise(object):
                 .format(str(self.state), self.brushingTimeS, str(self.brushingMode), str(self.sector),
                         self.hightPressureDetected,self.protocolVersion,self.typeId,self.hasReducedMotorSpeed,
                         self.hasProfesionalTimer,self.smiley)
+
+    def __json__(self) -> json:
+        return {
+            "status": self.state,
+            "brushTime": self.brushingTimeS,
+            "sector": self.sector
+        }
