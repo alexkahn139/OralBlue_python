@@ -29,7 +29,8 @@ class OralBScanDelegate(DefaultDelegate):
             OralBScanDelegate._printNewDevice(dev,advertise)
         elif isNewData:
             print(str(advertise))
-
+        else:
+            return
 
 if __name__ == '__main__':
     # create a scanner object that sends BLE broadcast packets to the ScanDelegate
@@ -37,6 +38,6 @@ if __name__ == '__main__':
 
     # start the scanner and keep the process running
     scanner.start()
-    while True:
-        print("Still running...")
-        scanner.process()
+#    while True:
+    print("Still running...")
+    scanner.process()
