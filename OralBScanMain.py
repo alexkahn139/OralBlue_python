@@ -38,6 +38,6 @@ if __name__ == '__main__':
 
     # start the scanner and keep the process running
     scanner.start()
-    while True:
-        print("Still running...")
-        scanner.process()
+#    while True:
+    print("Still running...")
+    scanner.process()
