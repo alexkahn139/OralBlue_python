@@ -35,7 +35,13 @@ class OralBScanDelegate(DefaultDelegate):
         if isNewDev:
             OralBScanDelegate._printNewDevice(dev,advertise)
         elif isNewData:
-            print(str(advertise))
+            jsonobj = {
+                "state": advertise.state,
+                "brushTime": advertise.brushingTimeS,
+                "sector": advertise.sector
+            }
+            jsonobj = json.dumps(jsonobj)
+            print(jsonobj)
         else:
             return
 
