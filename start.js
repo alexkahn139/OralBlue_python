@@ -15,6 +15,6 @@ function connectToToothbrush(callback) {
         callback(output)
         
     });
-
 }
+// export{connectToToothbrush};
 connectToToothbrush(console.log)
