@@ -1,15 +1,20 @@
 Module.register("MMM-toothbrush", {
     defaults: {
-        updateInterval: 1000,
+        updateInterval: 10000,
         debug: true
     },
     requiresVersion: "2.1.0",
 
     start: function() {
+		var self = this
         this.loaded = false;
         this.getData();
 
-        // update data?
+		// update data?
+		setInterval(function() {
+			self.getData()
+			self.updateDom();
+		}, this.config.updateInterval);
 
     },
     getData: function(){
@@ -53,8 +58,10 @@ Module.register("MMM-toothbrush", {
 		}
 	},
 
-    sendSocketNotificationReceived: function(notification, payload) {
+    socketNotificationReceived: function(notification, payload) {
         if(notification === "MMM-toothbrush-DISPLAY_DATA") {
+			console.log(payload)
+
 			this.dataNotification = payload;
 			this.updateDom();
 			this.loaded = true;

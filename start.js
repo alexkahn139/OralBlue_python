@@ -2,12 +2,17 @@
 
 const { spawn } = require('child_process');
 
-function connectToToothbrush(callback) {
-    console.log("start");
+module.exports = {
+    connectToToothbrush: function (callback) {
+// function connectToToothbrush(callback){
+    console.log("start"); 
+    console.log(callback)
     const sensor = spawn('python', ['OralBScanMain.py']);
+    // setTimeout(callback, 10000, "No brush");
     sensor.stdout.on('data', function(data) {
+        console.log("Got data")
         var output = []; // Store readings
-
+        
         output.push(data.toString());
         console.log(output[0])
         output = JSON.parse(output[0])
@@ -15,6 +20,7 @@ function connectToToothbrush(callback) {
         callback(output)
         
     });
+   
 }
-// export{connectToToothbrush};
-connectToToothbrush(console.log)
+}
+// connectToToothbrush(console.log)
