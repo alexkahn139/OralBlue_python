@@ -3,7 +3,6 @@ Module.register("MMM-toothbrush", {
 		updateInterval: 1000,
 		debug: true,
 		polling: false, 
-		// counter: 0
 	},
 	requiresVersion: "2.1.0",
 	
@@ -46,21 +45,14 @@ Module.register("MMM-toothbrush", {
 			data = JSON.parse(this.dataNotification);
 
 			if (!data.state == "off")
-			// this.config.counter = this.config.counter+1;
 			var wrapperDataNotification = document.createElement("div");
 			var timelabel = document.createElement("label");
-			timelabel.innerHTML =  this.translate("Time: ") + data.brushTime /*+ this.config.counter*/ +"<br>";
+			timelabel.innerHTML =  this.translate("Time: ") + data.brushTime +"<br>";
 			wrapper.appendChild(timelabel);
 			var sectorlable = document.createElement("label");
-			sectorlable.innerHTML =  this.translate("Sector: ") +data.sector//+ Math.floor(this.config.counter/30);
+			sectorlable.innerHTML =  this.translate("Sector: ") +data.sector
 			wrapper.appendChild(sectorlable);
 			
-			// if (this.config.debug) {
-			// 	var d = new Date();
-			// 	var labelLastUpdate = document.createElement("label");
-			// 	labelLastUpdate.innerHTML = "<br><br>Updated: " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2)+ ":" + ("0" + d.getSeconds()).slice(-2) + "<br>Intervall: " + this.config.updateInterval/1000 + "s";
-			// 	wrapper.appendChild(labelLastUpdate);
-			// }
 			
 			return wrapper;
 		}
